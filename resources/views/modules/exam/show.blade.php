@@ -29,7 +29,6 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    {!! Form::open() !!}
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-7">
                             <div class="form-group row">

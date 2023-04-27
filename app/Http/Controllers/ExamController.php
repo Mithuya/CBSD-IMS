@@ -92,7 +92,7 @@ class ExamController extends Controller
      */
     public function show($id)
     {
-        $exam = Exam::where('id', '=', $id)->with('course', 'invigilator', 'examiner')->first();
+        $exam = Exam::where('id', '=', $id)->with('course')->first();
         $courses = Course::select('id', 'title')->get();
 
         return view('modules.exam.show', compact('exam', 'courses'));
