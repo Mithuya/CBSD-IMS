@@ -6,7 +6,7 @@ use App\Models\Exam;
 use App\Http\Requests\StoreExamRequest;
 use App\Http\Requests\UpdateExamRequest;
 use App\Models\Course;
-use Yajra\DataTables\Facades\DataTables;
+use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller

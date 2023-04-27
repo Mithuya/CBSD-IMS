@@ -11,7 +11,7 @@ class StoreCourseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,28 @@ class StoreCourseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|max:50|string',
+            'description' => 'required|string',
+            'duration' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date'
+        ];
+    }
+
+    /**
+     * Custom message for validation
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'title.required' => 'Title is required!',
+            'title.max' => 'Title shoud below 50 characters!',
+            'duration.required' => 'Description is required!',
+            'duration.required' => 'Duration is required!',
+            'start_date.required' => 'Start Date is required!',
+            'end_date.required' => 'End Date is required!'
         ];
     }
 }

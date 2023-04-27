@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class CourseController extends Controller
 {
@@ -49,7 +50,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('modules.course.create');
     }
 
     /**
@@ -57,7 +58,8 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
-        //
+        $course = Course::create($request->validated());
+        return redirect()->route('courses.index')->with('success', 'Course Added successfully.');
     }
 
     /**
@@ -65,7 +67,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        return view('modules.course.show', compact('course'));
     }
 
     /**
@@ -73,7 +75,7 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        return view('modules.course.edit', compact('course'));
     }
 
     /**
@@ -81,7 +83,8 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
+        $course -> update($request->validated());
+        return redirect()->route('courses.index')->with('success', 'Course Data has been updated successfully');
     }
 
     /**
@@ -89,6 +92,8 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+
+        return redirect()->route('courses.index')->with('success', 'Course Data deleted successfully');
     }
 }

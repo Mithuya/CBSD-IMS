@@ -7,6 +7,7 @@ use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class SubjectController extends Controller
 {

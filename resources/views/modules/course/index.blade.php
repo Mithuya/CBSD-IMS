@@ -28,10 +28,10 @@
                                 <div class="col-2">
                                 </div>
                                 <div id="ToolbarRight">
-                                    @can('course-create')
+
                                         <a href="{{ route('courses.create') }}" class="btn btn-success btn-sm float-end"><i
                                                 class="mdi mdi-plus mr-2"></i>Add</a>
-                                    @endcan
+
                                 </div>
                             </div>
                             <table id="sqltable" class="table table-bordered table-striped table-hover table-sm dataTable">
@@ -97,11 +97,11 @@
                         className: "text-center no-select toggleEnterMark",
                         render: function(data, type, row, meta) {
 
-                            return '@can("course-show")<a href="courses/' + data +
-                                '" id="view_course" class="btn btn-primary btn-sm mr-1 view_course">View</a> @endcan' +
-                                '@can("course-edit")<a href="courses/' + data +
-                                '/edit" id="edit_course" class="btn btn-warning btn-sm mr-1 edit_course">Edit</a> @endcan' +
-                                '@can("course-delete")<button id="delete_course" class="btn btn-danger btn-sm delete_course">Delete</button> @endcan';
+                            return '<a href="courses/' + data +
+                                '" id="view_course" class="btn btn-primary btn-sm mr-1 view_course">View</a>' +
+                                '<a href="courses/' + data +
+                                '/edit" id="edit_course" class="btn btn-warning btn-sm mr-1 edit_course">Edit</a>' +
+                                '<button id="delete_course" class="btn btn-danger btn-sm delete_course">Delete</button>';
 
                         },
                     }
