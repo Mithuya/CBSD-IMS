@@ -35,10 +35,10 @@
                                     </select>
                                 </div>
                                 <div id="ToolbarRight">
-                                    @can('subject-create')
+
                                         <a href="{{ route('subjects.create') }}" class="btn btn-success btn-sm float-end"><i
                                                 class="mdi mdi-plus mr-2"></i>Add</a>
-                                    @endcan
+
                                 </div>
                             </div>
                             <table id="sqltable" class="table table-bordered table-striped table-hover table-sm dataTable">
@@ -109,11 +109,11 @@
                         className: "text-center no-select toggleEnterMark",
                         render: function(data, type, row, meta) {
 
-                            return '@can("subject-show")<a href="subjects/' + data +
-                                '" id="view_subject" class="btn btn-primary btn-sm mr-1 view_subject">View</a> @endcan' +
-                                '@can("subject-edit")<a href="subjects/' + data +
-                                '/edit" id="edit_subject" class="btn btn-warning btn-sm mr-1 edit_subject">Edit</a> @endcan' +
-                                '@can("subject-delete")<button id="delete_subject" class="btn btn-danger btn-sm delete_subject">Delete</button> @endcan';
+                            return '<a href="subjects/' + data +
+                                '" id="view_subject" class="btn btn-primary btn-sm mr-1 view_subject">View</a>' +
+                                '<a href="subjects/' + data +
+                                '/edit" id="edit_subject" class="btn btn-warning btn-sm mr-1 edit_subject">Edit</a>' +
+                                '<button id="delete_subject" class="btn btn-danger btn-sm delete_subject">Delete</button>';
 
                         },
                     }
