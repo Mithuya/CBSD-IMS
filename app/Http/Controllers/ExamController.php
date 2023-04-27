@@ -68,9 +68,8 @@ class ExamController extends Controller
     public function create()
     {
         $courses = Course::select('id', 'title')->get();
-        $staffs = Staff::with('user')->get();
 
-        return view('modules.exam.create', compact('courses', 'staffs'));
+        return view('modules.exam.create', compact('courses'));
     }
 
     /**
@@ -96,9 +95,7 @@ class ExamController extends Controller
         $exam = Exam::where('id', '=', $id)->with('course', 'invigilator', 'examiner')->first();
         $courses = Course::select('id', 'title')->get();
 
-        $staffs = Staff::select('id', 'user_id')->with('user:id,name')->get();
-
-        return view('modules.exam.show', compact('exam', 'courses', 'staffs'));
+        return view('modules.exam.show', compact('exam', 'courses'));
     }
 
     /**
@@ -109,10 +106,9 @@ class ExamController extends Controller
      */
     public function edit($id)
     {
-        $exam = Exam::where('id', '=', $id)->with('course', 'invigilator', 'examiner')->first();
+        $exam = Exam::where('id', '=', $id)->with('course')->first();
         $courses = Course::select('id', 'title')->get();
-        $staffs = Staff::select('id', 'user_id')->with('user:id,name')->get();
-        return view('modules.exam.edit', compact('exam', 'courses', 'staffs'));
+        return view('modules.exam.edit', compact('exam', 'courses'));
     }
 
     /**
