@@ -83,36 +83,6 @@
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-7">
                                 <div class="form-group row">
-                                    <label for="example-name-input" class="col-sm-3 col-form-label">Select Examiner
-                                        :</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control select2" id="examiner_id" name="examiner_id">
-                                            <option selected disabled>Select</option>
-                                            @foreach ($staffs as $staff)
-                                                <option {{ $staff->id == $exam->examiner_id ? 'selected' : '' }}
-                                                    value="{{ $staff->id }}">{{ $staff->user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-7">
-                                <div class="form-group row">
-                                    <label for="example-name-input" class="col-sm-3 col-form-label">Select Invigilator
-                                        :</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control select2" id="invigilator_id" name="invigilator_id">
-                                            <option selected disabled>Select</option>
-                                            @foreach ($staffs as $staff)
-                                                <option {{ $staff->id == $exam->invigilator_id ? 'selected' : '' }}
-                                                    value="{{ $staff->id }}">{{ $staff->user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-7">
-                                <div class="form-group row">
                                     <label for="example-name-input" class="col-sm-3 col-form-label">Exam Date :</label>
                                     <div class="col-sm-9">
                                         <input class="form-control" type="datetime-local" value="{{ $exam->date_time }}"
@@ -129,6 +99,5 @@
             </div>
         </div>
     </div>
-    {!! Form::close() !!}
 
 @endsection('content')
