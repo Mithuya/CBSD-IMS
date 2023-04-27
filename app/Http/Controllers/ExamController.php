@@ -16,6 +16,12 @@ class ExamController extends Controller
      */
     public function index(Request $request)
     {
+        // $authUser = Auth::user();                        // check if user is student then view his exam result only.
+        // if ($authUser ->hasAnyRole(['Student'])) {
+
+        // } elseif ($user->hasAnyRole(['Staff'])) {
+        // }
+
         $courses = Course::select('id', 'title')->get();
 
         $exams = Exam::with('course')->orderBy('id', 'DESC');
@@ -32,7 +38,7 @@ class ExamController extends Controller
 
         if ($request->ajax()) {
 
-            return DataTable::of($exams)
+            return DataTables::of($exams)
                 ->addColumn('id', function ($row) {
                     return $row->id;
                 })
@@ -56,49 +62,86 @@ class ExamController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $courses = Course::select('id', 'title')->get();
+        $staffs = Staff::with('user')->get();
+
+        return view('modules.exam.create', compact('courses', 'staffs'));
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreExamRequest  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(StoreExamRequest $request)
     {
-        //
+        $exam = Exam::create($request->validated());
+        return redirect()->route('exams.index')->with('success', 'Exam Detail Added successfully.');
     }
 
     /**
      * Display the specified resource.
+     *
+     * @param  \App\Models\Exam  $exam
+     * @return \Illuminate\Http\Response
      */
-    public function show(Exam $exam)
+    public function show($id)
     {
-        //
+        $exam = Exam::where('id', '=', $id)->with('course', 'invigilator', 'examiner')->first();
+        $courses = Course::select('id', 'title')->get();
+
+        $staffs = Staff::select('id', 'user_id')->with('user:id,name')->get();
+
+        return view('modules.exam.show', compact('exam', 'courses', 'staffs'));
     }
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Exam  $exam
+     * @return \Illuminate\Http\Response
      */
-    public function edit(Exam $exam)
+    public function edit($id)
     {
-        //
+        $exam = Exam::where('id', '=', $id)->with('course', 'invigilator', 'examiner')->first();
+        $courses = Course::select('id', 'title')->get();
+        $staffs = Staff::select('id', 'user_id')->with('user:id,name')->get();
+        return view('modules.exam.edit', compact('exam', 'courses', 'staffs'));
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateExamRequest  $request
+     * @param  \App\Models\Exam  $exam
+     * @return \Illuminate\Http\Response
      */
     public function update(UpdateExamRequest $request, Exam $exam)
     {
-        //
+        $exam->update($request->validated());
+        return redirect()->route('exams.index')->with('success', 'Exam Detail has been updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Exam  $exam
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Exam $exam)
     {
-        //
+        $exam->delete();
+        $data = [
+            'success' => true,
+            'message' => 'Exam has been deleted successfully.'
+        ];
+
+        return response()->json($data);
     }
 }

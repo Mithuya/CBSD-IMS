@@ -6,23 +6,31 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreExamRequest extends FormRequest
 {
-    /**
+     /**
      * Determine if the user is authorized to make this request.
+     *
+     * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, mixed>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            //
+            'title' => 'required|string',
+            'course_id' => 'required|string',
+            'description' => 'required|string',
+            'duration' => 'required',
+            'examiner_id' => 'required',
+            'invigilator_id' => 'required',
+            'date_time' => 'required'
         ];
     }
 }

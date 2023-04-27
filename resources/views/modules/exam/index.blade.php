@@ -35,10 +35,10 @@
                                     </select>
                                 </div>
                                 <div id="ToolbarRight">
-                                    @can('exam-create')
+
                                         <a href="{{ route('exams.create') }}" class="btn btn-success btn-sm float-end"><i
                                                 class="mdi mdi-plus mr-2"></i>Add</a>
-                                    @endcan
+
                                 </div>
                             </div>
                             <table id="sqltable" class="table table-bordered table-striped table-hover table-sm dataTable">
@@ -49,8 +49,6 @@
                                         <th scope="col">Description </th>
                                         <th scope="col">Duration </th>
                                         <th scope="col">Course </th>
-                                        <th scope="col">Invigilator </th>
-                                        <th scope="col">Examiner </th>
                                         <th scope="col">Action </th>
                                     </tr>
                                 </thead>
@@ -105,25 +103,17 @@
                         name: 'course',
                     },
                     {
-                        data: 'invigilator',
-                        name: 'invigilator',
-                    },
-                    {
-                        data: 'examiner',
-                        name: 'examiner',
-                    },
-                    {
                         data: 'action',
                         name: 'action',
                         searchable: false,
                         className: "text-center no-select toggleEnterMark",
                         render: function(data, type, row, meta) {
 
-                            return '@can("exam-show")<a href="exams/' + data +
-                                '" id="view_exam" class="btn btn-primary btn-sm mr-1 view_exam">View</a> @endcan' +
-                                '@can("exam-edit")<a href="exams/' + data +
-                                '/edit" id="edit_exam" class="btn btn-warning btn-sm mr-1 edit_exam">Edit</a> @endcan' +
-                                '@can("exam-delete")<button id="delete_exam" class="btn btn-danger btn-sm delete_exam">Delete</button> @endcan';
+                            return '<a href="exams/' + data +
+                                '" id="view_exam" class="btn btn-primary btn-sm mr-1 view_exam">View</a>' +
+                                '<a href="exams/' + data +
+                                '/edit" id="edit_exam" class="btn btn-warning btn-sm mr-1 edit_exam">Edit</a>' +
+                                '<button id="delete_exam" class="btn btn-danger btn-sm delete_exam">Delete</button>';
 
                         },
                     }

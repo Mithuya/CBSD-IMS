@@ -15,9 +15,4 @@ class Subject extends Model
     {
         return $this->belongsTo(Course::class);
     }
-
-    public function staffs()
-    {
-        return $this->belongsToMany(Staff::class, 'subject_staff');
-    }
 }
