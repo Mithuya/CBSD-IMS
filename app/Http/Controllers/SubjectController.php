@@ -64,7 +64,8 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        $courses = Course::get(['id', 'title']);
+        return view('modules.subject.create', compact('courses'));
     }
 
     /**
@@ -72,7 +73,8 @@ class SubjectController extends Controller
      */
     public function store(StoreSubjectRequest $request)
     {
-        //
+        $subject = Subject::create($request->validated());
+        return redirect()->route('subjects.index')->with('success', 'Subject Added successfully.');
     }
 
     /**
@@ -80,7 +82,8 @@ class SubjectController extends Controller
      */
     public function show(Subject $subject)
     {
-        //
+        $courses = Course::get(['id', 'title']);
+        return view('modules.subject.show', compact('subject', 'courses'));
     }
 
     /**
@@ -88,7 +91,9 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-        //
+
+        $courses = Course::get(['id', 'title']);
+        return view('modules.subject.edit', compact('subject', 'courses'));
     }
 
     /**
@@ -96,7 +101,8 @@ class SubjectController extends Controller
      */
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
-        //
+        $subject -> update($request->validated());
+        return redirect()->route('subjects.index')->with('success', 'Subject Data has been updated successfully.');
     }
 
     /**
@@ -104,6 +110,12 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        //
+        $subject->delete();
+        $data = [
+            'success' => true,
+            'message' => 'Subject has been deleted successfully.'
+        ];
+
+        return response()->json($data);
     }
 }
