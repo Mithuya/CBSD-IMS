@@ -40,7 +40,7 @@
                                     <img src="assets/images/services-icon/03.png" alt="">
                                 </div>
                                 <h5 class="font-16 text-uppercase mt-0 text-white-50">Courses</h5>
-                                {{-- <h4 class="font-500">{{ $courseCount }} <i class="mdi  text-success ml-2"></i></h4> --}}
+                                <h4 class="font-500">{{ $courseCount }} <i class="mdi  text-success ml-2"></i></h4>
 
                             </div>
                             <div class="pt-2">
@@ -57,7 +57,7 @@
                                     <img src="assets/images/services-icon/04.png" alt="">
                                 </div>
                                 <h5 class="font-16 text-uppercase mt-0 text-white-50">EXAMS</h5>
-                                {{-- <h4 class="font-500">{{ $examCount }} <i class="mdi text-success ml-2"></i></h4> --}}
+                                <h4 class="font-500">{{ $examCount }} <i class="mdi text-success ml-2"></i></h4>
                             </div>
                             <div class="pt-2">
                                 <p class="text-white-50 mb-0">Total Number of Exams</p>
@@ -75,7 +75,7 @@
                         <div class="card-body">
                             <h4 class="mt-0 header-title mb-4">Institute Management System(IMS)</h4>
                             <p class="text-muted mb-5">"Institute Management System(IMS) gives a straightforward interface to support
-                                 of Student information, Staff information, Course Details, Subject Details, Exam Attendance and Marks details. It very well may be utilized by instructive
+                                 of Course Details, Subject Details, Exam  details. It very well may be utilized by instructive
                                  establishments for Institute to keep up the records of understudies without any problem "</p>
                             <div class="float-right mt-2">
                                 <a href="#" class="text-primary">
